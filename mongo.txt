@@ -1,0 +1,159 @@
+// 1. Create a collection named orders.
+
+db.createCollection('orders')
+
+
+
+// 2. Insert at least 3 documents that represent an order. IMPORTANT: See section below for fields.
+
+db.orders.insert(
+    {
+        orderDate: Date(),
+        orderTotal: 8.00,
+        lineItems: [
+            {
+            unitPrice: 4.00,
+            quantity: 2,
+            productName: 'goat'
+            }
+        ]
+    }
+)
+
+db.orders.insert(
+    {
+        orderDate: Date(),
+        orderTotal: 4.00,
+        lineItems: [
+            {
+            unitPrice: 1.00,
+            quantity: 4,
+            productName: 'rabbit'
+            }
+        ]
+    }
+)
+
+db.orders.insert(
+    {
+        orderDate: Date(),
+        orderTotal: 80.00,
+        lineItems: [
+            {
+            unitPrice: 16.00,
+            quantity: 5,
+            productName: 'horse'
+            }
+        ]
+    }
+)
+
+db.orders.insert(
+    {
+        orderDate: Date(),
+        orderTotal: 47.00,
+        lineItems: [
+            {
+            unitPrice: 7.00,
+            quantity: 7,
+            productName: 'pig'
+            }
+        ]
+    }
+)
+
+
+db.orders.insert(
+    {
+        orderDate: new Date(),
+        orderTotal: 8.00,
+        lineItems: [
+            {
+            unitPrice: 4.00,
+            quantity: 2,
+            productName: 'goat'
+            }
+        ]
+    }
+)
+
+db.orders.insert(
+    {
+        orderDate: new Date(),
+        orderTotal: 4.00,
+        lineItems: [
+            {
+            unitPrice: 1.00,
+            quantity: 4,
+            productName: 'rabbit'
+            }
+        ]
+    }
+)
+
+db.orders.insert(
+    {
+        orderDate: new Date(),
+        orderTotal: 80.00,
+        lineItems: [
+            {
+            unitPrice: 16.00,
+            quantity: 5,
+            productName: 'horse'
+            }
+        ]
+    }
+)
+
+db.orders.insert(
+    {
+        orderDate: new Date(),
+        orderTotal: 47.00,
+        lineItems: [
+            {
+            unitPrice: 7.00,
+            quantity: 7,
+            productName: 'pig'
+            }
+        ]
+    }
+)
+
+
+
+// 3. Find a single order document, any order document.
+
+db.getCollection('orders').findOne()
+
+
+
+
+// 4. Find all orders and make them look pretty.
+
+db.getCollection('orders').find().pretty()
+
+
+
+
+// 5. Find all orders with an orderDate that is prior to 1/1/2016.
+
+db.getCollection('orders').find({"orderDate": {$lt : date}})
+(There aren't any. All of my documents have today's date.)
+
+
+
+
+// 6. Find all orders with an orderDate that is after 1/1/2016.
+
+db.getCollection('orders').find({"orderDate": {$gt : date}})
+
+
+
+
+// 7. Find orders with lineItems that have a quantity that is less than 50, but greater than 5.
+
+db.getCollection('orders').find({$and: [{'lineItems.quantity': {$gt: 5}}, {'lineItems.quantity': {$lt: 50}}]})
+
+
+
+
